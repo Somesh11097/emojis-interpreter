@@ -10,11 +10,18 @@ var emojiDictionary = {
 };
 
 export default function App() {
+  const [meaning, setMeaning] = useState(" ");
+
   function emojiInputHandler(event) {
     var userInput = event.target.value;
 
     var meaning = emojiDictionary[userInput];
-    console.log(meaning);
+
+    if (meaning === undefined) {
+      meaning = "We dont have it in our database";
+    }
+    // console.log(meaning);
+    setMeaning(meaning);
   }
   return (
     <div className="App">
@@ -23,6 +30,7 @@ export default function App() {
         placeholder="Enter Something to know the meaning of"
         onChange={emojiInputHandler}
       ></input>
+      <h2> {meaning} </h2>
     </div>
   );
 }
